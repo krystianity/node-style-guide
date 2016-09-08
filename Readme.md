@@ -1,4 +1,4 @@
-# Node.js Style Guide
+# An even better Node.js Style Guide
 
 This is a guide for writing consistent and aesthetically pleasing node.js code.
 It is inspired by what is popular within the community, and flavored with some
@@ -92,20 +92,20 @@ Limit your lines to 80 characters. Yes, screens have gotten much bigger over the
 last few years, but your brain has not. Use the additional room for split screen,
 your editor supports that, right?
 
-### Use single quotes
+### Use double quotes
 
-Use single quotes, unless you are writing JSON.
+Use double quotes, especially if you are writing JSON.
 
 *Right:*
 
 ```js
-var foo = 'bar';
+var foo = "bar";
 ```
 
 *Wrong:*
 
 ```js
-var foo = "bar";
+var foo = 'bar';
 ```
 
 ### Opening braces go on the same line
@@ -116,7 +116,7 @@ Your opening braces go on the same line as the statement.
 
 ```js
 if (true) {
-  console.log('winning');
+  console.log("winning");
 }
 ```
 
@@ -125,7 +125,7 @@ if (true) {
 ```js
 if (true)
 {
-  console.log('losing');
+  console.log("losing");
 }
 ```
 
@@ -141,7 +141,7 @@ they make sense.
 *Right:*
 
 ```js
-var keys   = ['foo', 'bar'];
+var keys   = ["foo", "bar"];
 var values = [23, 42];
 
 var object = {};
@@ -154,7 +154,7 @@ while (keys.length) {
 *Wrong:*
 
 ```js
-var keys = ['foo', 'bar'],
+var keys = ["foo", "bar"],
     values = [23, 42],
     object = {},
     key;
@@ -178,13 +178,13 @@ abbreviations should generally be avoided.
 *Right:*
 
 ```js
-var adminUser = db.query('SELECT * FROM users ...');
+var adminUser = db.query("SELECT * FROM users ...");
 ```
 
 *Wrong:*
 
 ```js
-var admin_user = db.query('SELECT * FROM users ...');
+var admin_user = db.query("SELECT * FROM users ...");
 ```
 
 ### Use UpperCamelCase for class names
@@ -242,10 +242,10 @@ keys when your interpreter complains:
 *Right:*
 
 ```js
-var a = ['hello', 'world'];
+var a = ["hello", "world"];
 var b = {
-  good: 'code',
-  'is generally': 'pretty',
+  good: "code",
+  "is generally": "retty",
 };
 ```
 
@@ -253,10 +253,10 @@ var b = {
 
 ```js
 var a = [
-  'hello', 'world'
+  "hello", "world"
 ];
-var b = {"good": 'code'
-        , is generally: 'pretty'
+var b = {"good": "code"
+        , is generally: "pretty"
         };
 ```
 
@@ -271,8 +271,8 @@ the triple equality operator as it will work just as expected.
 
 ```js
 var a = 0;
-if (a !== '') {
-  console.log('winning');
+if (a !== "") {
+  console.log("winning");
 }
 
 ```
@@ -282,7 +282,7 @@ if (a !== '') {
 ```js
 var a = 0;
 if (a == '') {
-  console.log('losing');
+  console.log("losing");
 }
 ```
 
@@ -290,20 +290,21 @@ if (a == '') {
 
 ### Use multi-line ternary operator
 
-The ternary operator should not be used on a single line. Split it up into multiple lines instead.
+The ternary operator should be used on a single line. Split it up into multiple lines only if the condition is
+too long or you have multiple conditions.
 
 *Right:*
 
 ```js
-var foo = (a === b)
-  ? 1
-  : 2;
+var foo = (a === b) ? 1 : 2;
 ```
 
 *Wrong:*
 
 ```js
-var foo = (a === b) ? 1 : 2;
+var foo = (a === b)
+  ? 1
+  : 2;
 ```
 
 ### Use descriptive conditions
@@ -316,7 +317,7 @@ Any non-trivial conditions should be assigned to a descriptively named variable 
 var isValidPassword = password.length >= 4 && /^(?=.*\d).{4,}$/.test(password);
 
 if (isValidPassword) {
-  console.log('winning');
+  console.log("winning");
 }
 ```
 
@@ -324,7 +325,7 @@ if (isValidPassword) {
 
 ```js
 if (password.length >= 4 && /^(?=.*\d).{4,}$/.test(password)) {
-  console.log('losing');
+  console.log("losing");
 }
 ```
 
@@ -383,32 +384,12 @@ function isPercentage(val) {
 }
 ```
 
-### Name your closures
+### Its okay to nest closures
 
-Feel free to give your closures a name. It shows that you care about them, and
-will produce better stack traces, heap and cpu profiles.
+Use closures, but don't nest them too deply. Otherwise your code will become a mess.
+Its okay to have 2-3 nested closures - depending on their complexity and content.
 
-*Right:*
-
-```js
-req.on('end', function onEnd() {
-  console.log('winning');
-});
-```
-
-*Wrong:*
-
-```js
-req.on('end', function() {
-  console.log('losing');
-});
-```
-
-### No nested closures
-
-Use closures, but don't nest them. Otherwise your code will become a mess.
-
-*Right:*
+*Sometimes Right:*
 
 ```js
 setTimeout(function() {
@@ -420,7 +401,7 @@ function afterConnect() {
 }
 ```
 
-*Wrong:*
+*Sometimes Wrong:*
 
 ```js
 setTimeout(function() {
@@ -533,18 +514,16 @@ Always put requires at top of file to clearly illustrate a file's dependencies. 
 
 ### Getters and setters
 
-Do not use setters, they cause more problems for people who try to use your
+Do not use setters and getters, they cause more problems for people who try to use your
 software than they can solve.
-
-Feel free to use getters that are free from [side effects][sideeffect], like
-providing a length property for a collection class.
 
 [sideeffect]: http://en.wikipedia.org/wiki/Side_effect_(computer_science)
 
 ### Do not extend built-in prototypes
 
 Do not extend the prototype of native JavaScript objects. Your future self will
-be forever grateful.
+be forever grateful. 
+You shall be allowed to extend the Error prototype for toString logging ;)
 
 *Right:*
 
