@@ -8,22 +8,24 @@ There is a .jshintrc which enforces these rules as closely as possible. You can
 either use that and adjust it, or use
 [this script](https://gist.github.com/kentcdodds/11293570) to make your own.
 
-This guide was created by [Felix Geisendörfer](http://felixge.de/) and is
+This guide was originally created by [Felix Geisendörfer](http://felixge.de/) and is
 licensed under the [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
 license. You are encouraged to fork this repository and make adjustments
 according to your preferences.
+
+Adjusted by [Christian Fröhlingsdorf](http://5cf.de/).
 
 ![Creative Commons License](http://i.creativecommons.org/l/by-sa/3.0/88x31.png)
 
 ## Table of contents
 
 ### Formatting
-* [2 Spaces for indentation](#2-spaces-for-indentation)
+* [4 Spaces for indentation](#4-spaces-for-indentation)
 * [Newlines](#newlines)
 * [No trailing whitespace](#no-trailing-whitespace)
 * [Use Semicolons](#use-semicolons)
 * [80 characters per line](#80-characters-per-line)
-* [Use single quotes](#use-single-quotes)
+* [Use double quotes](#use-double-quotes)
 * [Opening braces go on the same line](#opening-braces-go-on-the-same-line)
 * [Declare one variable per var statement](#declare-one-variable-per-var-statement)
 
@@ -60,9 +62,9 @@ according to your preferences.
 
 You may want to use [editorconfig.org](http://editorconfig.org/) to enforce the formatting settings in your editor. Use the [Node.js Style Guide .editorconfig file](.editorconfig) to have indentation, newslines and whitespace behavior automatically set to the rules set up below.
 
-### 2 Spaces for indentation
+### 4 Spaces for indentation
 
-Use 2 spaces for indenting your code and swear an oath to never mix tabs and
+Use 4 spaces for indenting your code and swear an oath to never mix tabs and
 spaces - a special kind of hell is awaiting you otherwise.
 
 ### Newlines
